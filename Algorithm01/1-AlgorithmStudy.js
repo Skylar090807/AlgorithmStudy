@@ -146,3 +146,43 @@ const triangleStar = () => {
 }
 
 triangleStar()
+
+// 왼쪽 역삼각형 별찍기
+const leftInvertedTriangle = () => {
+  document.write(`<h3>왼쪽 역삼각형 별 찍기</h3>`)
+  document.write('<pre>')
+  for (let i = 3; i >= 1; i--) {
+    for (let j = 0; j < i; j++) {
+      // document.write(`j: ${j}`)
+      document.write('⭐️')
+    }
+    // document.write(`i: ${i} \n`)
+    document.write(`\n`)
+  }
+  document.write('</pre>')
+  document.write('<hr/>')
+}
+
+leftInvertedTriangle()
+
+// 오른쪽 역삼각형 별찍기
+const rightInvertedTriangle = () => {
+  document.write(`<h3>오른쪽 역삼각형 별 찍기</h3>`)
+  document.write(`<pre>`)
+
+  for (let i = 3; i >= 1; i--) {
+    for (let j = 2; j >= i; j--) {
+      // document.write('j')
+      document.write(`🟣`)
+    }
+    for (let k = 0; k < i; k++) {
+      document.write(`⭐️`)
+    }
+    // document.write(`i\n`)
+    document.write(`\n`)
+  }
+
+  document.write(`</pre>`)
+}
+
+rightInvertedTriangle()
