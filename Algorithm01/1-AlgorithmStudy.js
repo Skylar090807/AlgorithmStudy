@@ -309,7 +309,7 @@ sortedArray()
 
 // 진법변환 toString() method 통해서 하기.
 // the conversion of decimal to binary, octal, hexadecimal
-const conversionMethod = (num) => {
+const convertMethod = (num) => {
   let number = num
   console.log(`toString() method 10진법: ${number}`)
 
@@ -323,41 +323,67 @@ const conversionMethod = (num) => {
   console.log(`toString(16): ${hexadecimal}`)
 }
 
-conversionMethod(11)
+convertMethod(88)
 
 // 1. 10진법에서 2진법으로 변환 후 출력.
 // 2. 2진법에서 8진법으로 변환 후 출력.
 
-const conversion = (num) => {
-  document.write(`<h3>10진법 -> 2진법 -> 8진법 변환 후 출력</h3>`)
-  // Array.reverse()
-  conversionArray = []
+const convert = (number) => {
+  document.write('<h4>진법 변환: 10진수 -> 2진수 -> 8진수</h4>')
+  let mod = Number
+  let convertArray = []
 
-  for (let i = 0; i < num; i++) {
-    temp = num % 2
-    conversionArray.push(temp)
+  // 1. 10진법에서 2진법으로 변환 후 출력.
+  while (number > 0) {
+    mod = number % 2
+    number = parseInt(number / 2)
+    convertArray.push(mod)
   }
-  console.log()
+  convertArray.reverse()
+  convertArray = convertArray.join('')
+  document.write(`10진수에서 2진수로 변환: ${convertArray}<br/>`)
+  console.log(`10진수에서 2진수로 변환: ${convertArray}`)
+  console.log('convertArray : ', convertArray)
+
+  // 2. 2진법에서 8진법으로 변환 후 출력.
+  let octalArray = [...convertArray]
+
+  // octalArray.length를 3개씩 나누었을 때 딱 떨어지지 않으면(0이 아니면),
+  // 딱 떨어질 때까지 octalArray.unshift('0') 반복한다.
+  while (octalArray.length % 3 !== 0) {
+    octalArray.unshift('0')
+  }
+  console.log('octalArray에 unshift 0 :', octalArray)
+
+  // octalArray.length가 0일 때까지 아래를 반복한다.
+  // count는 Math.pow()에서 사용할 지수다.
+
+  // 지수가 -1일 때까지 while 중첩문을 반복한다.
+  // octalArray.shift()하여 Number로 형 변환 후 temp에 대입한다. (arr.shift해주면 앞쪽부터 하나씩 제거된 요소를 반환.)
+  // Math.pow(거듭제곱 함수)를 사용한다.
+  // 초기 count는 2이므로 base숫자 2에 지수인 count2를 거듭제곱하면 2^2(4)이며,
+  // Math.pow(2,count) * temp해준 뒤 count를 하나씩 감소하므로 2^1(2), 2^0(1) 꼴이 된다.
+  // 감소된 count -1이 되는 순간 중첩 while문을 빠져 나와 result에 문자열로 형변환 하여 더하기 할당 해준다.
+  // 중첩 while문을 빠져나오면 다시 octalArray.length가 octalArray.shift()로 모두 제거되어 길이가 0이 될 때까지 중첩 while문을 돈다.
+  let result = ''
+  while (octalArray.length !== 0) {
+    let count = 2
+    let sum = 0
+    while (count !== -1) {
+      let temp = Number(octalArray.shift())
+      sum += Math.pow(2, count) * temp
+      count--
+      console.log('sum:', sum)
+    }
+    // result += `${sum}`
+    result += sum
+  }
+  console.log('2진수에서 8진수로 변환: ', result)
+  document.write(`2진수에서 8진수로 변환: ${result}`)
+  console.log(`octalArray는 모두 shift되었다: ${octalArray}`)
 }
 
-conversion(11)
-// program to convert decimal to binary
-function convertToBinary(x) {
-  let bin = 0
-  let rem,
-    i = 1,
-    step = 1
-  while (x != 0) {
-    rem = x % 2
-    console.log(`Step ${step++}: ${x}/2, Remainder = ${rem}, Quotient = ${parseInt(x / 2)}`)
-    x = parseInt(x / 2)
-    bin = bin + rem * i
-    i = i * 10
-  }
-  console.log(`Binary: ${bin}`)
-}
+// prompt에서 받아 온 number를 함수 convert 함수 인자로 전달
+let number = prompt('10진수 하나 입력: ')
 
-// take input
-let number = prompt('Enter a decimal number: ')
-
-convertToBinary(number)
+convert(number)
