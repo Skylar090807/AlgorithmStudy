@@ -1,6 +1,6 @@
 // 1부터 100까지 숫자 중 짝수만 출력.
 const evenNumber = () => {
-  for (let i = 0; i <= 100; i++) {
+  for (let i = 1; i <= 100; i++) {
     if (i % 2 === 0) {
       console.log(`짝수: ${i}`)
     }
@@ -8,9 +8,18 @@ const evenNumber = () => {
 }
 evenNumber()
 
-// 2부터 100까지 숫자 중 홀수만 출력.
+// for문만 사용해서 짝수 출력
+const evenNumber2 = () => {
+  for (let i = 0; i <= 100; i += 2) {
+    console.log(`evenNumber2 짝수: ${i}`)
+  }
+}
+
+evenNumber2()
+
+// 1부터 100까지 숫자 중 홀수만 출력.
 const oddNumber = () => {
-  for (let i = 0; i <= 100; i++) {
+  for (let i = 1; i <= 100; i++) {
     if (i % 2 === 1) {
       console.log(`홀수: ${i}`)
     }
@@ -18,6 +27,15 @@ const oddNumber = () => {
 }
 
 oddNumber()
+
+// for문만 사용해서 홀수 출력
+const oddNumber2 = () => {
+  for (let i = 1; i <= 100; i += 2) {
+    console.log(`oddNumber2 홀수: ${i}`)
+  }
+}
+
+oddNumber2()
 
 // 구구단 2단부터 순서대로 출력하기
 const multiplicationTable = () => {
@@ -27,18 +45,36 @@ const multiplicationTable = () => {
     document.write(`<h4>${i}단</h4>`)
 
     for (let j = 1; j <= 9; j++) {
+      const sum = i * j
       console.log(`
-        ${i} x ${j} = ${i * j}
+        ${i} x ${j} = ${sum}
       `)
       document.write(`
-      ${i} x ${j} = ${i * j}<br/><br/>
+      ${i} x ${j} = ${sum}<br/><br/>
       `)
     }
   }
   document.write('<hr/>')
 }
 
-// multiplicationTable()
+multiplicationTable()
+
+const threeMultiplicationTable2 = () => {
+  document.write(`<h3>for문 세 개로 구구단 2단부터 9단까지 세 개씩 화면에 출력하기</h3><br/>`)
+  document.write('<pre>')
+  for (let i = 2; i <= 2; i++) {
+    // document.write(`\n`)
+    for (let j = 0; j <= 7; j++) {
+      document.write(`\n`)
+      for (let k = 1; k <= 9; k++) {
+        document.write(`${i + j} x ${k} = ${(i + j) * k}\n`)
+      }
+    }
+  }
+  document.write('</pre>')
+  document.write('<hr/>')
+}
+threeMultiplicationTable2()
 
 // 구구단 1단부터 9단까지 세 개씩 화면에 출력하기
 // <pre> tag로 감싸주어 \t, \n이 표현되게 한다.
@@ -49,6 +85,8 @@ const threeMultiplicationTable = () => {
     for (let j = 1; j <= 9; j++) {
       document.write(`\n`)
       // document.write(`두번째for문 ${j} \t`)
+      // document.write(`i = ${i}\t`)
+
       for (let k = i * 3 - 2; k <= i * 3; k++) {
         // document.write(`세번째for문 ${k} \t`)
         document.write(`${k} x ${j} = ${k * j}\t`)
@@ -64,6 +102,7 @@ threeMultiplicationTable()
 
 // 피보나치 수열
 const FibonacciNumber = (n) => {
+  const start = new Date().getTime()
   let preNumber = 0
   let nextNumber = 1
   let result = 0
@@ -73,6 +112,8 @@ const FibonacciNumber = (n) => {
     nextNumber = result
     console.log(`피보나치 수열: ${result}`)
   }
+  const end = new Date().getTime()
+  console.log(end - start)
   return console.log(`피보나치 수열 결과: ${result}`)
 }
 
@@ -245,6 +286,8 @@ const diamondStar = () => {
 
 diamondStar()
 
+// 배열 정렬
+
 // 1. 길이가 10인 배열에 중복되지 않는 난수 10개를 발생시켜 대입한다.
 // 2. 난수 10개 값을 출력한다.
 // 3. 난수 10개를 오름차순 정렬하여 출력한다.
@@ -355,10 +398,10 @@ const convert = (number) => {
   }
   console.log('octalArray에 unshift 0 :', octalArray)
 
-  // octalArray.length가 0일 때까지 아래를 반복한다.
+  // octalArray.length가 0일 때까지(0이 아니면) 아래를 반복한다.
   // count는 Math.pow()에서 사용할 지수다.
 
-  // 지수가 -1일 때까지 while 중첩문을 반복한다.
+  // 지수가 -1일 때까지(-1이 아니면) while 중첩문을 반복한다.
   // octalArray.shift()하여 Number로 형 변환 후 temp에 대입한다. (arr.shift해주면 앞쪽부터 하나씩 제거된 요소를 반환.)
   // Math.pow(거듭제곱 함수)를 사용한다.
   // 초기 count는 2이므로 base숫자 2에 지수인 count2를 거듭제곱하면 2^2(4)이며,
@@ -384,6 +427,6 @@ const convert = (number) => {
 }
 
 // prompt에서 받아 온 number를 함수 convert 함수 인자로 전달
-let number = prompt('10진수 하나 입력: ')
+// let number = prompt('10진수 하나 입력: ')
 
-convert(number)
+convert(88)
