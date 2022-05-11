@@ -312,6 +312,51 @@ const diamondStar = () => {
 
 diamondStar()
 
+// 반복문과 조건문으로 다이아몬드 별 찍기
+const diamondStar2 = (size) => {
+  document.write(`<h3>반복문과 조건문으로 다이아몬드 별 찍기</h3>`)
+  document.write(`<pre>`)
+  let col = size * 2 - 1
+  let i = 1
+  while (i <= size) {
+    let j = 1
+    while (j <= col) {
+      switch (j >= size + 1 - i && j <= size - 1 + i) {
+        case true:
+          document.write('⭐️')
+          break
+        case false:
+          document.write('🟣')
+          break
+      }
+      j++
+    }
+    document.write(`\n`)
+    i++
+  }
+  let k = size - 1
+  while (k >= 1) {
+    let l = 1
+    while (l <= col) {
+      switch (l >= size + 1 - k && l <= size - 1 + k) {
+        case true:
+          document.write(`⭐️`)
+          break
+        case false:
+          document.write('🟣')
+          break
+      }
+      l++
+    }
+    document.write('\n')
+    k--
+  }
+  document.write(`<pre/>`)
+  document.write(`<hr/>`)
+}
+
+diamondStar2(3)
+
 // 배열 정렬
 const sortedArray = () => {
   document.write(`<h3>배열의 정렬<h3/>`)
@@ -337,13 +382,73 @@ const sortedArray = () => {
           let temp = result[j]
           result[j] = result[k]
           result[k] = temp
-          break
       }
       k++
     }
     j++
   }
   document.write(`난수 오름차순(ascending) 정렬: [${result}]\n`)
+
+  let l = 0
+  while (l < result.length) {
+    let m = l
+    while (m < result.length) {
+      switch (result[l] < result[m]) {
+        case true:
+          let temp = result[l]
+          result[l] = result[m]
+          result[m] = temp
+      }
+      m++
+    }
+    l++
+  }
+  document.write(`난수 내림차순(descending) 정렬: [${result}]`)
+  document.write(`<hr/>`)
 }
 
 sortedArray()
+
+// 진법 변환
+// 10진수 -> 2진수 -> 8진수
+const convert = (number) => {
+  document.write(`<h3>진법 변환. 10진수 -> 2진수 -> 8진수</h3>`)
+  let mod = Number
+  let convertArray = []
+
+  for (let i = 0; number > 0; i++) {
+    mod = number % 2
+    number = parseInt(number / 2)
+    convertArray.push(mod)
+  }
+
+  convertArray.reverse()
+  strArray = convertArray.join('')
+  document.write(`10진수에서 2진수로 변환 : ${strArray}<br/>`)
+
+  let octalArray = [...strArray]
+
+  for (let i = 0; octalArray.length % 3 !== 0; i++) {
+    octalArray.unshift('0')
+  }
+
+  let result = ''
+  for (let i = 0; octalArray.length !== 0; i++) {
+    let sum = 0
+    for (let count = 2; count !== -1; count--) {
+      let temp = Number(octalArray.shift())
+      sum += Math.pow(2, count) * temp
+    }
+    result += sum
+  }
+  document.write(`2진수에서 8진수로 변환 : ${result}`)
+}
+
+const valueHandler = () => {
+  const value = $('#input').value
+  document.write(value)
+}
+
+let number = prompt('10진수 입력: ')
+
+convert(number)

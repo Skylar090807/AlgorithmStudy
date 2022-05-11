@@ -286,6 +286,46 @@ const diamondStar = () => {
 
 diamondStar()
 
+// for문 if문 사용하여 다이아몬드 별 찍기
+const diamondStar2 = (size) => {
+  document.write(`<h3>for문 if문 사용하여 다이아몬드 별 찍기<h3/>`)
+  document.write(`<pre>`)
+  let col = size * 2 - 1
+
+  for (let i = 1; i <= size; i++) {
+    let print = ''
+    document.write(`\n`)
+    for (let j = 1; j <= col; j++) {
+      if (j >= size + 1 - i && j <= size - 1 + i) {
+        print += '⭐️'
+        document.write(`⭐️`)
+      } else {
+        print += ' '
+        document.write(`🟣`)
+      }
+    }
+    console.log(print)
+  }
+  for (let i = size - 1; i >= 1; i--) {
+    let print = ''
+    document.write('\n')
+    for (let j = 1; j <= col; j++) {
+      if (j >= size + 1 - i && j <= size - 1 + i) {
+        print += '⭐️'
+        document.write('⭐️')
+      } else {
+        print += ' '
+        document.write('🟣')
+      }
+    }
+    console.log(print)
+  }
+  document.write(`<pre/>`)
+  document.write(`<hr/>`)
+}
+
+diamondStar2(3)
+
 // 배열 정렬
 
 // 1. 길이가 10인 배열에 중복되지 않는 난수 10개를 발생시켜 대입한다.
@@ -383,13 +423,14 @@ const convert = (number) => {
     convertArray.push(mod)
   }
   convertArray.reverse()
-  convertArray = convertArray.join('')
-  document.write(`10진수에서 2진수로 변환: ${convertArray}<br/>`)
-  console.log(`10진수에서 2진수로 변환: ${convertArray}`)
-  console.log('convertArray : ', convertArray)
+  strArray = convertArray.join('')
+  document.write(`10진수에서 2진수로 변환: ${strArray}<br/>`)
+  console.log(`10진수에서 2진수로 변환: ${strArray}`)
+  console.log('strArray : ', strArray)
+  console.log(`convertArray: ${convertArray}`)
 
   // 2. 2진법에서 8진법으로 변환 후 출력.
-  let octalArray = [...convertArray]
+  let octalArray = [...strArray]
 
   // octalArray.length를 3개씩 나누었을 때 딱 떨어지지 않으면(0이 아니면),
   // 딱 떨어질 때까지 octalArray.unshift('0') 반복한다.
