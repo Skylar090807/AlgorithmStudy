@@ -444,11 +444,4 @@ const convert = (number) => {
   document.write(`2진수에서 8진수로 변환 : ${result}`)
 }
 
-const valueHandler = () => {
-  const value = $('#input').val()
-  document.write(value)
-}
-
-// let number = prompt('10진수 입력: ')
-
 convert(88)
