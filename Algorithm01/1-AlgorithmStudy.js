@@ -296,6 +296,7 @@ const diamondStar2 = (size) => {
     let print = ''
     document.write(`\n`)
     for (let j = 1; j <= col; j++) {
+      // 1 < j < 5
       if (j >= size + 1 - i && j <= size - 1 + i) {
         print += '⭐️'
         document.write(`⭐️`)

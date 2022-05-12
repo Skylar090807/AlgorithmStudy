@@ -7,11 +7,11 @@
 const evenOddNumber = () => {
   let i = 1
   while (i <= 100) {
-    switch (i % 2 === 0) {
-      case true:
+    switch (i % 2) {
+      case 0:
         console.log(`짝수: ${i}`)
         break
-      case false:
+      case 1:
         console.log(`홀수: ${i}`)
         break
     }
@@ -445,10 +445,10 @@ const convert = (number) => {
 }
 
 const valueHandler = () => {
-  const value = $('#input').value
+  const value = $('#input').val()
   document.write(value)
 }
 
-let number = prompt('10진수 입력: ')
+// let number = prompt('10진수 입력: ')
 
-convert(number)
+convert(88)
